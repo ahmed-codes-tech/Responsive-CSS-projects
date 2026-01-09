@@ -1,0 +1,32 @@
+body {
+    background-color: rgb(135, 207, 220);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#close_modal {
+    position: relative;
+    top: 5px;
+    left: 250px;
+}
+.card_body {
+    width: 500px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.card_data {
+    position: relative;
+    top: 0px;
+    
+}

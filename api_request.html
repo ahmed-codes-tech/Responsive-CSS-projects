@@ -4,21 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Api Request Handling</title>
+    <link rel="stylesheet" href="api_request.css">
 </head>
 
-<body style="background-color: gray; min-height:100vh; display: flex; align-items: center; justify-content: center;">
+<body>
     <div>
-        <button id="open_bt" type="button" style="padding: 10px; border-radius: 5px; cursor: pointer;">Open Id</button>
+        <button id="open_bt" type="button">Open Id</button>
     </div>
-    <div id="card" style="display: none; background-color: beige;">
-        <div>
-            <img id="card_img" src="" alt="">
+    <dialog id="card_modal">
+        <div class="card_body">
+            <div class="card_img">
+                <img id="card_img" src="" alt="">
+                <h3 id="follow">Followers</h3>
+            </div>
+            <div class="card_data">
+                <h3 id="name"></h3>
+                <p id="details"></p>
+            </div>
         </div>
-        <div>
-            <h3 id="follow">Followers</h3>
-        </div>
-    </div>
+        <button id="close_modal">close</button>
+    </dialog>
     <script>
         const requestUrl = 'https://api.github.com/users/CodeWithHarry';
         const Xhr = new XMLHttpRequest();
@@ -34,18 +40,24 @@
                 const imageUrl = data.avatar_url;
                 img.src = imageUrl;
                 addFollow.textContent = `Followers : ${followers}`;
+                const modal_name = data.login;
+                api_name.textContent =  `Mr.${modal_name}`;
             }
         }
         Xhr.send();
 
-        const card_head = document.getElementById('card');
+        const api_name = document.getElementById('name'); 
+        const card_head = document.getElementById('card_modal');
         const img = document.getElementById('card_img');
         const addFollow = document.getElementById('follow');
         const open_btn = document.getElementById('open_bt');
-          
+        const close_modal_btn = document.getElementById('close_modal');
+
         open_btn.addEventListener('click', () => {
-            card_head.style.display =
-            card_head.style.display === 'none' ? 'block' : 'none';
+            card_head.showModal();
+        })
+        close_modal_btn.addEventListener('click', () => {
+            card_head.close();
         })
     </script>
 </body>
